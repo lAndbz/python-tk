@@ -14,11 +14,23 @@ class Ball:
         self.canvas = canvas
         self.id = canvas.create_oval(10, 10, 25, 25, fill=color)
         self.canvas.move(self.id, 245, 100)
-    def draw(self, x, y):
-        self.canvas.move(self.id, x, y)
+        self.x = 0
+        self.y = -1
+        self.canvas_height = self.canvas.winfo_height()
+#    def draw(self, x, y):
+#        self.canvas.move(self.id, x, y)
+#
 
+    def draw(self):
+        self.canvas.move(self.id, self.x, self.y)
+        pos = self.canvas.coords(self.id)
+        if pos[1] <= 0: 
+            self.y = 1
+        if pos[3] >= self.canvas_height:
+            self.y = -1
+            
 window = tk.Tk()
-window.title('Ball Game')
+window.title('弹球游戏')
 window.resizable(0, 0)
 window.wm_attributes("-topmost", 1)
 canvas = tk.Canvas(window, width=500, height=400, bd=0, highlightthickness=0)
@@ -27,16 +39,11 @@ window.update()
 
 ball = Ball(canvas, 'red')
 
-x_pos = 0
-y_pos = 0
+#x_pos = 0
+#y_pos = 0
 
 while True:
-    y_pos -= 1
-    if y_pos < -50:
-        y_pos += 1
-    elif y_pos > 200:
-        y_pos -= 1
-    ball.draw(x_pos, y_pos)
+    ball.draw()
     window.update_idletasks()
     window.update()
     time.sleep(0.01)
