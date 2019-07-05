@@ -17,9 +17,6 @@ class Ball:
         self.x = 0
         self.y = -1
         self.canvas_height = self.canvas.winfo_height()
-#    def draw(self, x, y):
-#        self.canvas.move(self.id, x, y)
-#
 
     def draw(self):
         self.canvas.move(self.id, self.x, self.y)

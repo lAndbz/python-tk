@@ -12,15 +12,20 @@ class Ball:
         self.canvas_height = self.canvas.winfo_height()
         self.canvas_width = self.canvas.winfo_width()
         self.canvas.move(self.id, self.canvas_height/2, self.canvas_width/2)
-        self.x = 0
-        self.y = -1
+        # self.x = 0
+        # self.y = -1
+        self.x_step = 0
+        self.y_step = -1
     def draw(self):
-        self.canvas.move(self.id, self.x, self.y)
+        self.canvas.move(self.id, self.x_step, self.y_step)
+        # print("self.x: %d , self.y: %d" %(self.x, self.y))
         pos = self.canvas.coords(self.id)
-        if pos[1] <= 0: #y1
-            self.y = 1
-        if pos[3] > self.canvas_height: #y2
-            self.y = -1
+        print("x1: %d , y1: %d , x2: %d , y2: %d" % (pos[0], pos[1], pos[2], pos[3]))
+        time.sleep(0.05)
+        # if pos[1] <= 0: #y1
+        #     self.y = 1
+        # if pos[3] > self.canvas_height: #y2
+        #     self.y = -1
 
 
 window = tk.Tk()
